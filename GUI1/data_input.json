@@ -1,0 +1,464 @@
+{
+  "Cars": [],
+  "maxAcc": 4.8000006675720215,
+  "maxDeacc": 4.360001564025879,
+  "pathAlg": "fastest path",
+  "simDuration": 169.80001831054688,
+  "elevatorSpeed": 8.550000190734863,
+  "Elevators": [
+    {
+      "spawnRateOut": 4,
+      "x": 60,
+      "y": 5,
+      "vmax": 25,
+      "z": 96,
+      "spawnRateIn": 10
+    },
+    {
+      "spawnRateOut": 0,
+      "x": 48,
+      "y": 5,
+      "vmax": 25,
+      "z": 57,
+      "spawnRateIn": 1
+    },
+    {
+      "spawnRateOut": 0,
+      "x": -21,
+      "y": 15,
+      "vmax": 25,
+      "z": 44,
+      "spawnRateIn": 4
+    },
+    {
+      "spawnRateOut": 0,
+      "x": 18,
+      "y": 3,
+      "vmax": 25,
+      "z": 85,
+      "spawnRateIn": 5
+    },
+    {
+      "spawnRateOut": 25,
+      "x": 68,
+      "y": 26,
+      "vmax": 25,
+      "z": 153,
+      "spawnRateIn": 14
+    },
+    {
+      "spawnRateOut": 2,
+      "x": 4,
+      "y": 7,
+      "vmax": 25,
+      "z": 126,
+      "spawnRateIn": 15
+    },
+    {
+      "spawnRateOut": 0,
+      "x": -14,
+      "y": 30,
+      "vmax": 25,
+      "z": 150,
+      "spawnRateIn": 18
+    },
+    {
+      "spawnRateOut": 10,
+      "x": 46,
+      "y": 19,
+      "vmax": 25,
+      "z": 116,
+      "spawnRateIn": 11
+    },
+    {
+      "spawnRateOut": 21,
+      "x": 50,
+      "y": 10,
+      "vmax": 25,
+      "z": 164,
+      "spawnRateIn": 7
+    },
+    {
+      "spawnRateOut": 21,
+      "x": 0,
+      "y": 12,
+      "vmax": 25,
+      "z": -49,
+      "spawnRateIn": 19
+    },
+    {
+      "spawnRateOut": 0,
+      "x": -69,
+      "y": 4,
+      "vmax": 25,
+      "z": 12,
+      "spawnRateIn": 4
+    },
+    {
+      "spawnRateOut": 0,
+      "x": -47,
+      "y": 7,
+      "vmax": 25,
+      "z": 8,
+      "spawnRateIn": 12
+    },
+    {
+      "spawnRateOut": 16,
+      "x": -2,
+      "y": 11,
+      "vmax": 25,
+      "z": -74,
+      "spawnRateIn": 18
+    },
+    {
+      "spawnRateOut": 14,
+      "x": 23,
+      "y": 13,
+      "vmax": 25,
+      "z": -71,
+      "spawnRateIn": 22
+    },
+    {
+      "spawnRateOut": 1,
+      "x": 34,
+      "y": 8,
+      "vmax": 25,
+      "z": -19,
+      "spawnRateIn": 4
+    },
+    {
+      "spawnRateOut": 0,
+      "x": -25,
+      "y": 5,
+      "vmax": 25,
+      "z": -101,
+      "spawnRateIn": 1
+    }
+  ],
+  "safetyDist": 8,
+  "CityCenter": {
+    "In": [
+      {
+        "x": -34,
+        "weight": 764,
+        "z": 125
+      },
+      {
+        "x": 91,
+        "weight": 647,
+        "z": 127
+      },
+      {
+        "x": 14,
+        "weight": 485,
+        "z": -61
+      },
+      {
+        "x": -46,
+        "weight": 284,
+        "z": 25
+      }
+    ],
+    "upperBorder": 26,
+    "Out": [
+      {
+        "x": 66,
+        "weight": 615,
+        "z": 153
+      },
+      {
+        "x": 7,
+        "weight": 387,
+        "z": -58
+      }
+    ]
+  },
+  "speedAlg": "two car priority",
+  "Tunnels": [
+    {
+      "elev1": 5,
+      "vmax": 39,
+      "elev2": 3
+    },
+    {
+      "elev1": 3,
+      "vmax": 40,
+      "elev2": 5
+    },
+    {
+      "elev1": 5,
+      "vmax": 41,
+      "elev2": 8
+    },
+    {
+      "elev1": 8,
+      "vmax": 41,
+      "elev2": 5
+    },
+    {
+      "elev1": 8,
+      "vmax": 60,
+      "elev2": 0
+    },
+    {
+      "elev1": 0,
+      "vmax": 60,
+      "elev2": 8
+    },
+    {
+      "elev1": 3,
+      "vmax": 60,
+      "elev2": 1
+    },
+    {
+      "elev1": 1,
+      "vmax": 60,
+      "elev2": 3
+    },
+    {
+      "elev1": 1,
+      "vmax": 60,
+      "elev2": 0
+    },
+    {
+      "elev1": 0,
+      "vmax": 60,
+      "elev2": 1
+    },
+    {
+      "elev1": 7,
+      "vmax": 60,
+      "elev2": 2
+    },
+    {
+      "elev1": 2,
+      "vmax": 60,
+      "elev2": 7
+    },
+    {
+      "elev1": 6,
+      "vmax": 60,
+      "elev2": 7
+    },
+    {
+      "elev1": 7,
+      "vmax": 60,
+      "elev2": 6
+    },
+    {
+      "elev1": 4,
+      "vmax": 60,
+      "elev2": 7
+    },
+    {
+      "elev1": 7,
+      "vmax": 60,
+      "elev2": 4
+    },
+    {
+      "elev1": 7,
+      "vmax": 60,
+      "elev2": 1
+    },
+    {
+      "elev1": 1,
+      "vmax": 60,
+      "elev2": 7
+    },
+    {
+      "elev1": 7,
+      "vmax": 60,
+      "elev2": 8
+    },
+    {
+      "elev1": 5,
+      "vmax": 60,
+      "elev2": 7
+    },
+    {
+      "elev1": 3,
+      "vmax": 60,
+      "elev2": 2
+    },
+    {
+      "elev1": 2,
+      "vmax": 60,
+      "elev2": 3
+    },
+    {
+      "elev1": 2,
+      "vmax": 60,
+      "elev2": 11
+    },
+    {
+      "elev1": 11,
+      "vmax": 60,
+      "elev2": 2
+    },
+    {
+      "elev1": 10,
+      "vmax": 60,
+      "elev2": 2
+    },
+    {
+      "elev1": 2,
+      "vmax": 60,
+      "elev2": 10
+    },
+    {
+      "elev1": 11,
+      "vmax": 60,
+      "elev2": 10
+    },
+    {
+      "elev1": 10,
+      "vmax": 60,
+      "elev2": 11
+    },
+    {
+      "elev1": 10,
+      "vmax": 60,
+      "elev2": 9
+    },
+    {
+      "elev1": 9,
+      "vmax": 60,
+      "elev2": 10
+    },
+    {
+      "elev1": 9,
+      "vmax": 60,
+      "elev2": 11
+    },
+    {
+      "elev1": 11,
+      "vmax": 60,
+      "elev2": 9
+    },
+    {
+      "elev1": 9,
+      "vmax": 60,
+      "elev2": 12
+    },
+    {
+      "elev1": 12,
+      "vmax": 60,
+      "elev2": 9
+    },
+    {
+      "elev1": 9,
+      "vmax": 60,
+      "elev2": 14
+    },
+    {
+      "elev1": 14,
+      "vmax": 60,
+      "elev2": 9
+    },
+    {
+      "elev1": 12,
+      "vmax": 60,
+      "elev2": 14
+    },
+    {
+      "elev1": 14,
+      "vmax": 60,
+      "elev2": 12
+    },
+    {
+      "elev1": 13,
+      "vmax": 60,
+      "elev2": 12
+    },
+    {
+      "elev1": 12,
+      "vmax": 60,
+      "elev2": 13
+    },
+    {
+      "elev1": 1,
+      "vmax": 40,
+      "elev2": 14
+    },
+    {
+      "elev1": 14,
+      "vmax": 60,
+      "elev2": 1
+    },
+    {
+      "elev1": 6,
+      "vmax": 60,
+      "elev2": 2
+    },
+    {
+      "elev1": 5,
+      "vmax": 60,
+      "elev2": 2
+    },
+    {
+      "elev1": 2,
+      "vmax": 60,
+      "elev2": 5
+    },
+    {
+      "elev1": 2,
+      "vmax": 60,
+      "elev2": 6
+    },
+    {
+      "elev1": 8,
+      "vmax": 40,
+      "elev2": 4
+    },
+    {
+      "elev1": 15,
+      "vmax": 40,
+      "elev2": 12
+    },
+    {
+      "elev1": 12,
+      "vmax": 40,
+      "elev2": 15
+    },
+    {
+      "elev1": 5,
+      "vmax": 40,
+      "elev2": 1
+    },
+    {
+      "elev1": 8,
+      "vmax": 40,
+      "elev2": 6
+    },
+    {
+      "elev1": 6,
+      "vmax": 40,
+      "elev2": 8
+    },
+    {
+      "elev1": 2,
+      "vmax": 40,
+      "elev2": 1
+    },
+    {
+      "elev1": 1,
+      "vmax": 40,
+      "elev2": 2
+    },
+    {
+      "elev1": 6,
+      "vmax": 40,
+      "elev2": 5
+    },
+    {
+      "elev1": 1,
+      "vmax": 40,
+      "elev2": 9
+    },
+    {
+      "elev1": 4,
+      "vmax": 40,
+      "elev2": 1
+    }
+  ]
+}

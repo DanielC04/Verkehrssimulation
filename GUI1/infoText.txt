@@ -1,0 +1,60 @@
+Klassen:
+Network = Verkehrssystem
+Vertex = Kreuzung, Kurve oder Fahrstuhlausgang im Verkehrssystem
+Edge = Tunnel oder Fahrstuhl im Verkehrssystem
+Car = Auto im Verkehrssystem
+
+
+Alle folgenden physikalischen Werte werden in SI-Einheiten gespeichert.
+Wird ein Wort anhand des Klassennahmens anstatt des deutschen Wortes genannt, ist das Objekt gemeint:
+Beispiel: Liste = Liste aller Edges <=> Liste = Liste aller Tunnel- oder Fahrstuhl-Objekte im Verkehrssystem
+
+Network-Variablen:
+safety_dist = Mindestabstand zweier Autos
+intersection_width = Breite der Kreuzung
+max_acc = maximale Beschleunigung
+max_deacc = Betrag der maximalen Entschleunigung
+elevator_speed = Höchstgeschwindigkeit der Fahrstühle
+dt = Dauer eines Frames
+sim_duration = Dauer der Simulation
+path_algorithm = Name des gewählten Navigationsalgorithmus
+speed_algorithm = Name des gewählten Geschwindigkeitsalgorithmus
+vertices = Liste aller Vertices, Index entspricht dem Schlüssel
+cars = Liste aller aktiven Autos im Network
+
+Vertex-Variablen:
+key = einzigartiger Schlüssel der Vertex
+network = Network, in dem sich die Vertex befindet
+pos = Position der Vertex im kartesischen Raum
+source_density = erwartete einfahrenden Autos/Minute
+intersection_queue = Warteschlange jedes Autos auf Edges zur Vertex mit Elementen: [speed_algorithm.get_heap_key(Auto), Iterator, Auto]
+pred_edges = Dictionary aller eingehenden Edges, Key: Startpunkt(Edge), Value: Edge
+succ_edges = Dictionary aller ausgehenden Edges, Key: Endpunkt(Edge), Value: Edge
+
+Edge-Variablen:
+key = einzigartiger Schlüssel der Edge
+network = Network, in dem sich Edge befindet
+source = Anfangsvertex der Edge
+target = Endvertex der Edge
+elevator = bool(Ist die Edge ein Fahrstuhl?)
+length = Abstand von source und target im kartesischen Raum
+car_capacity = Fassungsvermögen an Autos der Edge
+tunnel = Liste aller Autos auf der Edge (index(car1) > index(car2) <=> car1 ist hinter car2)
+
+Car-Variablen:
+key = einzigartiger Schlüssel der Edge
+network = Network, in dem sich das Auto befindet
+spawn_time = Spawnzeitpunkt des Autos
+path = geordnete Liste aller Vertices auf dem Weg des Autos
+path_progress = Anzahl erreichter Vertices (zu Beginn 1)
+next_vertex = nächste Vertex im Weg (am Ende: None)
+edge = Edge, auf der sich das Auto befindet
+next_edge = nächste Edge auf dem Weg des Autos (am Ende: None)
+edge_progress = Abstand von Car und next_vertex im kartesischen Raum
+prio = Platz in der Warteschlange von next_edge
+wait_time = Wartezeit des Autos (wenn Auto gerade fährt: 0, wenn Auto direkt an der Kreuzung steht: steigt)
+speed = Geschwindigkeit des Autos
+acceleration = (1 <=> Auto beschleunigt in diesem Frame, -1 <=> Auto entschleunigt in diesem Frame)
+
+
+
