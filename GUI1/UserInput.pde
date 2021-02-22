@@ -216,14 +216,35 @@ void deleteAll() {
 // pythonScript starten, keyevent von P
 void runPython() {
   saveData();
+  boolean pythonScriptWorked = false;
   try {
     String[] cmd = {"py", new File(sketchPath).getParentFile().getAbsolutePath() + "/Code/Main.py"};
     exec(cmd);
-    popup.addText("Started Python sketch");
-  } 
+    pythonScriptWorked = true;
+  }
   catch(Exception e) {
+    println("Error occured: ", e);
+  }
+  try {
+    String[] cmd = {"python", new File(sketchPath).getParentFile().getAbsolutePath() + "/Code/Main.py"};
+    exec(cmd);
+    pythonScriptWorked = true;
+  }
+  catch(Exception e) {
+    println("Error occured: ", e);
+  }
+  try {
+    String[] cmd = {"python3", new File(sketchPath).getParentFile().getAbsolutePath() + "/Code/Main.py"};
+    exec(cmd);
+    pythonScriptWorked = true;
+  }
+  catch(Exception e) {
+    println("Error occured: ", e);
+  }
+  if (!pythonScriptWorked) {
     popup.addText("Error! Python sketch not started!");
-    println(e);
+  } else {
+    popup.addText("Started Python sketch");
   }
 }
 
