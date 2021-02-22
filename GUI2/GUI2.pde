@@ -27,6 +27,7 @@ Println console;
 Textarea consoleArea;
 Terrain myTerrain;
 Timer timer;
+InfoArea infoArea;
 JSONObject data;
 
 // Listen mit Fahrstühlen, Tunneln und Autos
@@ -44,6 +45,7 @@ float dt = 0.04, simDuration;
 PImage endscreen, tunnelTexture;
 float maxAcc, maxDeacc, elevSpeed = 0;
 String error;
+PFont font;
 
 // in Programm benutzte Flags
 boolean pause = false;                            // true, wenn Programm pausiert
@@ -62,6 +64,7 @@ void setup() {
   textSize(24);
   textAlign(CENTER);
   fill(0);
+  font = createFont("Georgia", 24);
   //Objekte initiieren
   cam = new PeasyCam(this, 0, 0, 0, 2000);
   cam.setSuppressRollRotationMode();

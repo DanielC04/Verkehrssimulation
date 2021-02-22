@@ -14,6 +14,7 @@ void setupControlElements() { //<>// //<>// //<>//
   cp5.setAutoDraw(false);
   // benutzte Bilder laden
   tunnelTexture = loadImage(sketchPath + "/tunnelTexture.png");
+  infoArea = new InfoArea();
 }
 
 // Function, um alle Dinge zu zeichnen, die nicht in der 3D-Scene sind, sondern zur Benutzerinteraktion genutzt werden
@@ -47,7 +48,7 @@ void keyPressed() {
   case 's' :
     stopSimulation();
     break;
-  case 'h' :
+  case 'd' :
     consoleArea.setVisible(! signsVisible);
     signsVisible = ! signsVisible;
     break;
