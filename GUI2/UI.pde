@@ -14,7 +14,6 @@ void setupControlElements() { //<>// //<>// //<>//
   cp5.setAutoDraw(false);
   // benutzte Bilder laden
   tunnelTexture = loadImage(sketchPath + "/tunnelTexture.png");
-  endscreen = loadImage(sketchPath + "/evaluation.png");
 }
 
 // Function, um alle Dinge zu zeichnen, die nicht in der 3D-Scene sind, sondern zur Benutzerinteraktion genutzt werden

@@ -88,15 +88,17 @@ CityCenter selectedCityCenter = null;
 
 public void setup() {
   
+  sketchPath = sketchPath();
+  if (sketchPath().contains("application.windows")){
+    sketchPath = new File(sketchPath).getParentFile().getAbsolutePath();
+  }
+  PImage splashScreen = loadImage(sketchPath + "/splashScreen.PNG");
+  image(splashScreen, 0, 0, width, height);
   frameRate(25);
   textSize(32);
   font = createFont("Georgia", 24);
   textFont(font);
   fill(0);
-  sketchPath = sketchPath();
-  if (sketchPath().contains("application.windows")){
-    sketchPath = new File(sketchPath).getParentFile().getAbsolutePath();
-  }
   tunnelTexture = loadImage(sketchPath  + "/tunnelTexture.png");
   // Objekte für Benutzerein- und -ausgaben einrichten -> siehe tab UI
   setupControlElements();
@@ -646,7 +648,6 @@ public class InfoArea {
       .setColorBackground(color(220, 225))
       .setColorForeground(color(230, 225))
       .setText("Shortcuts:\n"
-      + "- TAB: GUI2 starten \n"
       + "- E: neuen Fahrstuhl erstellen \n"
       + "- C: neuen CityCenter erstellen \n"
       + "- D: aktuell ausgewähltes Objekt löschen \n"
@@ -1024,17 +1025,17 @@ public void setupControlElements() {
 }
 
 public void drawControlls() {
-    // alle Dinge zeichnen, die unabhängig von Kamerabewegungen sein sollen
-    hint(DISABLE_DEPTH_TEST);
-    cam.beginHUD();
-    elevInfo.display();
-    tunnelInfo.display();
-    cityCenterInfo.display();
-    defaultInfo.display();
-    cp5.draw();
-    popup.drawPopup();
-    cam.endHUD();
-    hint(ENABLE_DEPTH_TEST);
+  // alle Dinge zeichnen, die unabhängig von Kamerabewegungen sein sollen
+  hint(DISABLE_DEPTH_TEST);
+  cam.beginHUD();
+  elevInfo.display();
+  tunnelInfo.display();
+  cityCenterInfo.display();
+  defaultInfo.display();
+  cp5.draw();
+  popup.drawPopup();
+  cam.endHUD();
+  hint(ENABLE_DEPTH_TEST);
 }
 
 public void keyPressed() {
@@ -1060,9 +1061,6 @@ public void keyPressed() {
       break;
     default:
       break;
-    }
-    if (keyCode==TAB) {
-      runOtherGUI();
     }
   }
 }
@@ -1205,24 +1203,13 @@ public void deleteAll() {
 public void runPython() {
   saveData();
   try {
-    String[] cmd = {"python", new File(sketchPath).getParentFile().getAbsolutePath() + "/Code/Main.py"};
+    String[] cmd = {"py", new File(sketchPath).getParentFile().getAbsolutePath() + "/Code/Main.py"};
     exec(cmd);
     popup.addText("Started Python sketch");
   } 
   catch(Exception e) {
     popup.addText("Error! Python sketch not started!");
     println(e);
-  }
-}
-
-public void runOtherGUI() {
-  try {
-    launch(new File(sketchPath).getParentFile().getAbsolutePath() + "/GUI2.lnk");
-    popup.addText("Starting GUI2...");
-  } 
-  catch(Exception e) {
-    println(e);
-    popup.addText("Error! GUI2 not started!");
   }
 }
 
@@ -1269,6 +1256,7 @@ public int idOfElevator(Elevator e) {
   }
   return 0;
 }
+
   public void settings() {  fullScreen(P3D); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "GUI1" };

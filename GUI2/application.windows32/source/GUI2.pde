@@ -1,5 +1,5 @@
- /*
-shortcuts:
+/* //<>//
+ shortcuts:
  Leertaste: Simulation pausieren/fortsetzen
  TAB: GUI1 starten
  R: Simulation neu starten
@@ -39,7 +39,6 @@ ArrayList<Car> carsToDestroy = new ArrayList<Car>();
 final int scale = 20;                              // ungefähr 20 pixel sind 1 meter -> alle Distanzen müssen um 20 gestreckt werden
 final int terrainBorder = 500 * scale;             // die Größe des generierten Terrains und die maximalen Eingabewerte in den Numberboxes
 final String fileName = "/data_exchange.json";
-final boolean isExe = true;                       // muss beim Export der .exe true sein, damit die Paths richtig sind
 String sketchPath;
 float dt = 0.04, simDuration;
 PImage endscreen, tunnelTexture;
@@ -53,14 +52,16 @@ boolean isLoading = true;
 
 void setup() {
   fullScreen(P3D);
+  sketchPath = sketchPath();
+  if (sketchPath().contains("application.windows")) {
+    sketchPath = new File(sketchPath).getParentFile().getAbsolutePath();
+  }
+  PImage splashScreen = loadImage(sketchPath + "/splashScreen.PNG");
+  image(splashScreen, 0, 0, width, height);
   frameRate(1/dt);
   textSize(24);
   textAlign(CENTER);
   fill(0);
-  sketchPath = sketchPath();
-  if (isExe){
-    sketchPath = new File(sketchPath).getParentFile().getAbsolutePath();
-  }
   //Objekte initiieren
   cam = new PeasyCam(this, 0, 0, 0, 2000);
   cam.setSuppressRollRotationMode();
@@ -129,6 +130,7 @@ void updateData() {
         cam.setActive(false);
       } else if (isLoading == true && error.equals("null")) {      // Error-String in JSON-Datei hat von loading auf etwas anderes gewechselt
         reset();
+        endscreen = loadImage(sketchPath + "/evaluation.png");
       }
     }
     catch(Exception e) {

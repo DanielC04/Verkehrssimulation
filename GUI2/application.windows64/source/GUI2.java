@@ -26,8 +26,8 @@ import java.io.IOException;
 
 public class GUI2 extends PApplet {
 
- /*
-shortcuts:
+/* //<>//
+ shortcuts:
  Leertaste: Simulation pausieren/fortsetzen
  TAB: GUI1 starten
  R: Simulation neu starten
@@ -67,7 +67,6 @@ ArrayList<Car> carsToDestroy = new ArrayList<Car>();
 final int scale = 20;                              // ungefähr 20 pixel sind 1 meter -> alle Distanzen müssen um 20 gestreckt werden
 final int terrainBorder = 500 * scale;             // die Größe des generierten Terrains und die maximalen Eingabewerte in den Numberboxes
 final String fileName = "/data_exchange.json";
-final boolean isExe = true;                       // muss beim Export der .exe true sein, damit die Paths richtig sind
 String sketchPath;
 float dt = 0.04f, simDuration;
 PImage endscreen, tunnelTexture;
@@ -81,14 +80,16 @@ boolean isLoading = true;
 
 public void setup() {
   
+  sketchPath = sketchPath();
+  if (sketchPath().contains("application.windows")) {
+    sketchPath = new File(sketchPath).getParentFile().getAbsolutePath();
+  }
+  PImage splashScreen = loadImage(sketchPath + "/splashScreen.PNG");
+  image(splashScreen, 0, 0, width, height);
   frameRate(1/dt);
   textSize(24);
   textAlign(CENTER);
   fill(0);
-  sketchPath = sketchPath();
-  if (isExe){
-    sketchPath = new File(sketchPath).getParentFile().getAbsolutePath();
-  }
   //Objekte initiieren
   cam = new PeasyCam(this, 0, 0, 0, 2000);
   cam.setSuppressRollRotationMode();
@@ -157,6 +158,7 @@ public void updateData() {
         cam.setActive(false);
       } else if (isLoading == true && error.equals("null")) {      // Error-String in JSON-Datei hat von loading auf etwas anderes gewechselt
         reset();
+        endscreen = loadImage(sketchPath + "/evaluation.png");
       }
     }
     catch(Exception e) {
@@ -166,6 +168,7 @@ public void updateData() {
     delay(1000);
   }
 }
+
 public class Car {
   PShape car, backgroundSign;
   PVector pos, dsVector = new PVector();
@@ -587,7 +590,7 @@ class Timer { //<>//
     return result;
   }
 }
-public void setupControlElements() { //<>//
+public void setupControlElements() { //<>// //<>//
   cp5 = new ControlP5(this);
   // Textfeld der Konsole
   consoleArea = cp5.addTextarea("txt")
@@ -597,13 +600,12 @@ public void setupControlElements() { //<>//
     .setLineHeight(18)
     .setColor(color(0))
     .setColorBackground(color(200, 220))
-    .setVisible(true);
+  .setVisible(true);  
   
   console = cp5.addConsole(consoleArea);
   cp5.setAutoDraw(false);
   // benutzte Bilder laden
   tunnelTexture = loadImage(sketchPath + "/tunnelTexture.png");
-  endscreen = loadImage(sketchPath + "/evaluation.png");
 }
 
 // Function, um alle Dinge zu zeichnen, die nicht in der 3D-Scene sind, sondern zur Benutzerinteraktion genutzt werden
@@ -643,9 +645,6 @@ public void keyPressed() {
     break;
   default:
     break;
-  } 
-  if (keyCode==TAB) {
-    runOtherGUI();
   }
 }
 
@@ -677,20 +676,6 @@ public void reset() {
   println("~ ---Simulation-started---");
   println("~ -----------------------------");
 }
-
-public void runOtherGUI() {
-  try {
-    String otherGUI = new File(sketchPath).getParentFile().getAbsolutePath() + "/GUI1.exe.lnk";
-    launch(otherGUI);
-    println(otherGUI);
-    println("Starting GUI1...");
-  } 
-  catch(Exception e) {
-    println(e);
-    println("Error! GUI1 not started!");
-  }
-}
-
 
 public void stopSimulation() {
   timer.time = simDuration + .1f;

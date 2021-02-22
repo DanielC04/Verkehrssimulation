@@ -60,15 +60,17 @@ CityCenter selectedCityCenter = null;
 
 void setup() {
   fullScreen(P3D);
+  sketchPath = sketchPath();
+  if (sketchPath().contains("application.windows")){
+    sketchPath = new File(sketchPath).getParentFile().getAbsolutePath();
+  }
+  PImage splashScreen = loadImage(sketchPath + "/splashScreen.PNG");
+  image(splashScreen, 0, 0, width, height);
   frameRate(25);
   textSize(32);
   font = createFont("Georgia", 24);
   textFont(font);
   fill(0);
-  sketchPath = sketchPath();
-  if (sketchPath().contains("application.windows")){
-    sketchPath = new File(sketchPath).getParentFile().getAbsolutePath();
-  }
   tunnelTexture = loadImage(sketchPath  + "/tunnelTexture.png");
   // Objekte für Benutzerein- und -ausgaben einrichten -> siehe tab UI
   setupControlElements();

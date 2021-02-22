@@ -39,17 +39,17 @@ void setupControlElements() {
 }
 
 void drawControlls() {
-    // alle Dinge zeichnen, die unabhängig von Kamerabewegungen sein sollen
-    hint(DISABLE_DEPTH_TEST);
-    cam.beginHUD();
-    elevInfo.display();
-    tunnelInfo.display();
-    cityCenterInfo.display();
-    defaultInfo.display();
-    cp5.draw();
-    popup.drawPopup();
-    cam.endHUD();
-    hint(ENABLE_DEPTH_TEST);
+  // alle Dinge zeichnen, die unabhängig von Kamerabewegungen sein sollen
+  hint(DISABLE_DEPTH_TEST);
+  cam.beginHUD();
+  elevInfo.display();
+  tunnelInfo.display();
+  cityCenterInfo.display();
+  defaultInfo.display();
+  cp5.draw();
+  popup.drawPopup();
+  cam.endHUD();
+  hint(ENABLE_DEPTH_TEST);
 }
 
 void keyPressed() {
@@ -75,9 +75,6 @@ void keyPressed() {
       break;
     default:
       break;
-    }
-    if (keyCode==TAB) {
-      runOtherGUI();
     }
   }
 }
@@ -220,24 +217,13 @@ void deleteAll() {
 void runPython() {
   saveData();
   try {
-    String[] cmd = {"python", new File(sketchPath).getParentFile().getAbsolutePath() + "/Code/Main.py"};
+    String[] cmd = {"py", new File(sketchPath).getParentFile().getAbsolutePath() + "/Code/Main.py"};
     exec(cmd);
     popup.addText("Started Python sketch");
   } 
   catch(Exception e) {
     popup.addText("Error! Python sketch not started!");
     println(e);
-  }
-}
-
-void runOtherGUI() {
-  try {
-    launch(new File(sketchPath).getParentFile().getAbsolutePath() + "/GUI2.lnk");
-    popup.addText("Starting GUI2...");
-  } 
-  catch(Exception e) {
-    println(e);
-    popup.addText("Error! GUI2 not started!");
   }
 }
 
