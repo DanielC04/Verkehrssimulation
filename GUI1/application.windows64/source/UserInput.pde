@@ -232,8 +232,7 @@ void runPython() {
 
 void runOtherGUI() {
   try {
-    println(new File(sketchPath).getParentFile().getAbsolutePath() + "/GUI2/application.windows64/GUI2.exe");
-    launch(new File(sketchPath).getParentFile().getAbsolutePath() + "/GUI2/application.windows64/GUI2.exe");
+    launch(new File(sketchPath).getParentFile().getAbsolutePath() + "/GUI2.exe.lnk");
     popup.addText("Starting GUI2...");
   } 
   catch(Exception e) {

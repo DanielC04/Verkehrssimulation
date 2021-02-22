@@ -1,4 +1,4 @@
-/* //<>//
+/* //<>// //<>//
 shortcuts:
  - TAB: GUI2 starten
  - E: neuen Fahrstuhl erstellen
@@ -48,11 +48,8 @@ final int scale = 20;                                                          /
 final int border = 500 * scale;                                                // die Größe des generierten Terrains und die maximalen Eingabewerte in den Numberboxes
 final color color1 = color(0, 255, 0), color2 = color(255, 0, 0);
 final String fileName = "/data_input.json";
-final boolean isExe = false;         // muss beim Export der .exe true sein, damit die Paths richtig sind
 String sketchPath;
 PFont font;
-int windowWidth, windowHeight;    // um resizing vom Fenster zu erkennen
-
 // sonstige Variablen
 PImage tunnelTexture;
 float upperBorder;
@@ -61,15 +58,15 @@ Elevator selectedElevator = null;
 Tunnel selectedTunnel = null;
 CityCenter selectedCityCenter = null;
 
-void setup() {  
-  size(1920, 1080, P3D);
+void setup() {
+  fullScreen(P3D);
   frameRate(25);
   textSize(32);
   font = createFont("Georgia", 24);
   textFont(font);
   fill(0);
   sketchPath = sketchPath();
-  if (isExe){
+  if (sketchPath().contains("application.windows")){
     sketchPath = new File(sketchPath).getParentFile().getAbsolutePath();
   }
   tunnelTexture = loadImage(sketchPath  + "/tunnelTexture.png");
@@ -91,20 +88,8 @@ void setup() {
   out();
   in();
 }
-// window risize erkennen
-void checkForWindowResize() {
-  if (windowWidth != width || windowHeight != height) {
-    // Sketch window has resized
-    windowWidth = width;
-    windowHeight = height;
-    // Easycam neu einrichten, weil sonst die Kamera nicht mit neuer Fenstergröße klar kommt
-    cam.reset(1800);
-    println("window resized");
-  }
-}
 
 void draw() {
-  checkForWindowResize();
   background(255);
    //draw elevators
   for (elevatorIterator = allElevators.iterator(); elevatorIterator.hasNext(); ) {

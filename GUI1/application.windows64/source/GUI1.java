@@ -26,7 +26,7 @@ import java.io.IOException;
 
 public class GUI1 extends PApplet {
 
-/* //<>// //<>//
+/* //<>//
 shortcuts:
  - TAB: GUI2 starten
  - E: neuen Fahrstuhl erstellen
@@ -76,10 +76,8 @@ final int scale = 20;                                                          /
 final int border = 500 * scale;                                                // die Größe des generierten Terrains und die maximalen Eingabewerte in den Numberboxes
 final int color1 = color(0, 255, 0), color2 = color(255, 0, 0);
 final String fileName = "/data_input.json";
-final boolean isExe = true;         // muss beim Export der .exe true sein, damit die Paths richtig sind
 String sketchPath;
 PFont font;
-
 // sonstige Variablen
 PImage tunnelTexture;
 float upperBorder;
@@ -90,13 +88,13 @@ CityCenter selectedCityCenter = null;
 
 public void setup() {  
   
-  frameRate(25);  
+  frameRate(25);
   textSize(32);
   font = createFont("Georgia", 24);
   textFont(font);
   fill(0);
   sketchPath = sketchPath();
-  if (isExe){
+  if (sketchPath().contains("application.windows")){
     sketchPath = new File(sketchPath).getParentFile().getAbsolutePath();
   }
   tunnelTexture = loadImage(sketchPath  + "/tunnelTexture.png");
@@ -117,7 +115,6 @@ public void setup() {
   // Tab wechseln, um spawnRateIn und spawnRateOut der Elevators zu berechnen und die Farben der Elevators zu setzen
   out();
   in();
-  println(sketchPath);
 }
 
 public void draw() {
@@ -649,7 +646,6 @@ public class InfoArea {
       .setColorBackground(color(220, 225))
       .setColorForeground(color(230, 225))
       .setText("Shortcuts:\n"
-      + "- ESC: Programm schließen\n"
       + "- TAB: GUI2 starten \n"
       + "- E: neuen Fahrstuhl erstellen \n"
       + "- C: neuen CityCenter erstellen \n"
@@ -1221,8 +1217,7 @@ public void runPython() {
 
 public void runOtherGUI() {
   try {
-    println(new File(sketchPath).getParentFile().getAbsolutePath() + "/GUI2/application.windows64/GUI2.exe");
-    launch(new File(sketchPath).getParentFile().getAbsolutePath() + "/GUI2/application.windows64/GUI2.exe");
+    launch(new File(sketchPath).getParentFile().getAbsolutePath() + "/GUI2.exe.lnk");
     popup.addText("Starting GUI2...");
   } 
   catch(Exception e) {
@@ -1274,7 +1269,7 @@ public int idOfElevator(Elevator e) {
   }
   return 0;
 }
-  public void settings() {  fullScreen(P3D); }
+  public void settings() {  size(1920, 1080, P3D); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "GUI1" };
     if (passedArgs != null) {
