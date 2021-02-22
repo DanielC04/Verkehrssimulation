@@ -1,9 +1,9 @@
 {
   "Cars": [],
-  "maxAcc": 4.8000006675720215,
+  "maxAcc": 6.170001029968262,
   "maxDeacc": 4.360001564025879,
   "pathAlg": "fastest path",
-  "simDuration": 14.700002670288086,
+  "simDuration": 38.39999771118164,
   "elevatorSpeed": 8.550000190734863,
   "Elevators": [
     {
@@ -84,7 +84,7 @@
       "y": 12,
       "vmax": 25,
       "z": -49,
-      "spawnRateIn": 19
+      "spawnRateIn": 8
     },
     {
       "spawnRateOut": 0,
@@ -108,7 +108,7 @@
       "y": 11,
       "vmax": 25,
       "z": -74,
-      "spawnRateIn": 18
+      "spawnRateIn": 7
     },
     {
       "spawnRateOut": 14,
@@ -116,7 +116,7 @@
       "y": 13,
       "vmax": 25,
       "z": -71,
-      "spawnRateIn": 22
+      "spawnRateIn": 21
     },
     {
       "spawnRateOut": 1,
@@ -124,7 +124,7 @@
       "y": 8,
       "vmax": 25,
       "z": -19,
-      "spawnRateIn": 4
+      "spawnRateIn": 5
     },
     {
       "spawnRateOut": 0,
@@ -132,10 +132,10 @@
       "y": 5,
       "vmax": 25,
       "z": -101,
-      "spawnRateIn": 1
+      "spawnRateIn": 0
     }
   ],
-  "safetyDist": 8,
+  "safetyDist": 6.659999370574951,
   "CityCenter": {
     "In": [
       {
@@ -149,7 +149,7 @@
         "z": 127
       },
       {
-        "x": 14,
+        "x": 35,
         "weight": 485,
         "z": -61
       },

@@ -1,5 +1,5 @@
 public class Car {
-  PShape car, backgroundSign;
+  PShape backgroundSign;
   PVector pos, dsVector = new PVector();
   Street tunnel;
   int indexRoute = 0, indexA = 0, indexCheckpoints = 0, id, a = -1;
@@ -9,10 +9,6 @@ public class Car {
   ArrayList<Street> route;
 
   public Car(ArrayList<Street> r, int i, float [] a, float[][] c) {
-    car = loadShape(sketchPath + "/Car.obj");
-    car.scale(18);
-    car.translate(0, -12, 0);
-    car.rotate(PI, 0, 0, 1);
     acc = a;
     checkpoints = c;
 
@@ -39,12 +35,9 @@ public class Car {
 
   void display() {
     pushMatrix();
-    if (tunnel.isLowerTunnel) {
-      translate(0, 40, 0);
-    }
     translate(pos.x, pos.y, pos.z);
     // draw car
-    shape(car);
+    shape(tunnel.car);
     if (signsVisible) {
       // draw Sign
       pushMatrix();
@@ -60,8 +53,6 @@ public class Car {
 
   void switchRoad() {
     // Rotationen der vorherigen Straße rückgängig machen
-    car.rotate(- tunnel.angleX, tunnel.rotationAxis.x, tunnel.rotationAxis.y, tunnel.rotationAxis.z);
-    car.rotate(- tunnel.angleY, 0, 1, 0);
     indexRoute ++;
     if (indexRoute == 1 || indexRoute == route.size() - 1) {                       // v auf 0 setzen, falls man Auto Fahrstuhl kommt
       v = 0;
@@ -74,9 +65,6 @@ public class Car {
     posOnStreet = 0.;
     pos = tunnel.pos1.copy();
     setVelocity(v);
-    // Auto genau wie Tunnel drehen
-    car.rotate(tunnel.angleY, 0, 1, 0);
-    car.rotate(tunnel.angleX, tunnel.rotationAxis.x, tunnel.rotationAxis.y, tunnel.rotationAxis.z);
   }
 
   public void moveCar() {

@@ -1,4 +1,4 @@
-class Timer { //<>//
+class Timer { //<>// //<>//
   float time  ;
   float[] spawnTimes = new float[0];
   int spawnTimeIndex = 0;

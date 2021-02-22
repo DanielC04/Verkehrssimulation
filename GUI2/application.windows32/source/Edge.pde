@@ -2,6 +2,7 @@
 class Street {
   boolean isLowerTunnel = false;
   PVector pos1, pos2, movementVector, rotationAxis;
+  PShape car;
   float len, angleX, angleY, vmax;
 
   public Street(PVector p1, PVector p2, float v) {
@@ -14,6 +15,13 @@ class Street {
     angleY = new PVector(movementVector.z, movementVector.x).heading();
     angleX = asin(movementVector.y/movementVector.mag());
     rotationAxis = movementVector.cross(new PVector(0, 1, 0));
+
+    car = loadShape(sketchPath + "/Car.obj");
+    car.scale(18);
+    car.translate(0, -12, 0);
+    car.rotate(PI, 0, 0, 1);
+    car.rotate(this.angleY, 0, 1, 0);
+    car.rotate(this.angleX, this.rotationAxis.x, this.rotationAxis.y, this.rotationAxis.z);
   }
 }
 
@@ -46,7 +54,8 @@ class Tunnel extends Street {
       }
     }    
     if (existsTunnel(pos2, pos1)) {
-      isLowerTunnel = true;
+      this.car.translate(0, 40, 0);     // Auto muss auf unterer Fahrbahn
+      this.isLowerTunnel = true;
     }
   }
   public void display() {

@@ -648,6 +648,7 @@ public class InfoArea {
       .setColorBackground(color(220, 225))
       .setColorForeground(color(230, 225))
       .setText("Shortcuts:\n"
+      + "- ESC: Programm schließen \n"
       + "- E: neuen Fahrstuhl erstellen \n"
       + "- C: neuen CityCenter erstellen \n"
       + "- D: aktuell ausgewähltes Objekt löschen \n"
@@ -1202,14 +1203,35 @@ public void deleteAll() {
 // pythonScript starten, keyevent von P
 public void runPython() {
   saveData();
+  boolean pythonScriptWorked = false;
   try {
     String[] cmd = {"py", new File(sketchPath).getParentFile().getAbsolutePath() + "/Code/Main.py"};
     exec(cmd);
-    popup.addText("Started Python sketch");
-  } 
+    pythonScriptWorked = true;
+  }
   catch(Exception e) {
+    println("Error occured: ", e);
+  }
+  try {
+    String[] cmd = {"python", new File(sketchPath).getParentFile().getAbsolutePath() + "/Code/Main.py"};
+    exec(cmd);
+    pythonScriptWorked = true;
+  }
+  catch(Exception e) {
+    println("Error occured: ", e);
+  }
+  try {
+    String[] cmd = {"python3", new File(sketchPath).getParentFile().getAbsolutePath() + "/Code/Main.py"};
+    exec(cmd);
+    pythonScriptWorked = true;
+  }
+  catch(Exception e) {
+    println("Error occured: ", e);
+  }
+  if (!pythonScriptWorked) {
     popup.addText("Error! Python sketch not started!");
-    println(e);
+  } else {
+    popup.addText("Started Python sketch");
   }
 }
 

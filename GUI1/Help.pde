@@ -11,6 +11,7 @@ public class InfoArea {
       .setColorBackground(color(220, 225))
       .setColorForeground(color(230, 225))
       .setText("Shortcuts:\n"
+      + "- ESC: Programm schließen \n"
       + "- E: neuen Fahrstuhl erstellen \n"
       + "- C: neuen CityCenter erstellen \n"
       + "- D: aktuell ausgewähltes Objekt löschen \n"

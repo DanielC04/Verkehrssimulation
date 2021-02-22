@@ -26,7 +26,7 @@ import java.io.IOException;
 
 public class GUI2 extends PApplet {
 
-/* //<>//
+/* //<>// //<>//
  shortcuts:
  Leertaste: Simulation pausieren/fortsetzen
  TAB: GUI1 starten
@@ -55,6 +55,7 @@ Println console;
 Textarea consoleArea;
 Terrain myTerrain;
 Timer timer;
+InfoArea infoArea;
 JSONObject data;
 
 // Listen mit Fahrstühlen, Tunneln und Autos
@@ -72,6 +73,7 @@ float dt = 0.04f, simDuration;
 PImage endscreen, tunnelTexture;
 float maxAcc, maxDeacc, elevSpeed = 0;
 String error;
+PFont font;
 
 // in Programm benutzte Flags
 boolean pause = false;                            // true, wenn Programm pausiert
@@ -90,6 +92,7 @@ public void setup() {
   textSize(24);
   textAlign(CENTER);
   fill(0);
+  font = createFont("Georgia", 24);
   //Objekte initiieren
   cam = new PeasyCam(this, 0, 0, 0, 2000);
   cam.setSuppressRollRotationMode();
@@ -168,9 +171,8 @@ public void updateData() {
     delay(1000);
   }
 }
-
 public class Car {
-  PShape car, backgroundSign;
+  PShape backgroundSign;
   PVector pos, dsVector = new PVector();
   Street tunnel;
   int indexRoute = 0, indexA = 0, indexCheckpoints = 0, id, a = -1;
@@ -180,10 +182,6 @@ public class Car {
   ArrayList<Street> route;
 
   public Car(ArrayList<Street> r, int i, float [] a, float[][] c) {
-    car = loadShape(sketchPath + "/Car.obj");
-    car.scale(18);
-    car.translate(0, -12, 0);
-    car.rotate(PI, 0, 0, 1);
     acc = a;
     checkpoints = c;
 
@@ -210,12 +208,9 @@ public class Car {
 
   public void display() {
     pushMatrix();
-    if (tunnel.isLowerTunnel) {
-      translate(0, 40, 0);
-    }
     translate(pos.x, pos.y, pos.z);
     // draw car
-    shape(car);
+    shape(tunnel.car);
     if (signsVisible) {
       // draw Sign
       pushMatrix();
@@ -231,8 +226,6 @@ public class Car {
 
   public void switchRoad() {
     // Rotationen der vorherigen Straße rückgängig machen
-    car.rotate(- tunnel.angleX, tunnel.rotationAxis.x, tunnel.rotationAxis.y, tunnel.rotationAxis.z);
-    car.rotate(- tunnel.angleY, 0, 1, 0);
     indexRoute ++;
     if (indexRoute == 1 || indexRoute == route.size() - 1) {                       // v auf 0 setzen, falls man Auto Fahrstuhl kommt
       v = 0;
@@ -245,9 +238,6 @@ public class Car {
     posOnStreet = 0.f;
     pos = tunnel.pos1.copy();
     setVelocity(v);
-    // Auto genau wie Tunnel drehen
-    car.rotate(tunnel.angleY, 0, 1, 0);
-    car.rotate(tunnel.angleX, tunnel.rotationAxis.x, tunnel.rotationAxis.y, tunnel.rotationAxis.z);
   }
 
   public void moveCar() {
@@ -322,6 +312,7 @@ public class Car {
 class Street {
   boolean isLowerTunnel = false;
   PVector pos1, pos2, movementVector, rotationAxis;
+  PShape car;
   float len, angleX, angleY, vmax;
 
   public Street(PVector p1, PVector p2, float v) {
@@ -334,6 +325,13 @@ class Street {
     angleY = new PVector(movementVector.z, movementVector.x).heading();
     angleX = asin(movementVector.y/movementVector.mag());
     rotationAxis = movementVector.cross(new PVector(0, 1, 0));
+
+    car = loadShape(sketchPath + "/Car.obj");
+    car.scale(18);
+    car.translate(0, -12, 0);
+    car.rotate(PI, 0, 0, 1);
+    car.rotate(this.angleY, 0, 1, 0);
+    car.rotate(this.angleX, this.rotationAxis.x, this.rotationAxis.y, this.rotationAxis.z);
   }
 }
 
@@ -366,7 +364,8 @@ class Tunnel extends Street {
       }
     }    
     if (existsTunnel(pos2, pos1)) {
-      isLowerTunnel = true;
+      this.car.translate(0, 40, 0);     // Auto muss auf unterer Fahrbahn
+      this.isLowerTunnel = true;
     }
   }
   public void display() {
@@ -398,7 +397,51 @@ public class Elevator extends Street {
     shape (elev);
   }
 }
-public void loadObjects() {
+
+public class InfoArea {
+  boolean isVisible = false;
+  Textarea shortcuts;
+  InfoArea() {
+    shortcuts = cp5.addTextarea("shortcuts")
+      .setSize(width - 600, height - 200)
+      .setPosition(400, 100)
+      .setFont(font)
+      .setColor(0)
+      .setLineHeight(28)
+      .setColorBackground(color(220, 225))
+      .setColorForeground(color(230, 225))
+      .setText("Shortcuts:\n"
+      + "- ESC: Programm schließen \n"
+      + "- Space: Simulation pausieren bzw. fortsetzen \n"
+      + "- R: Simulation zurücksetzen \n"
+      + "- D: Details (Seitenpanel und Beschriftung der Autos) ein-/ausblenden \n"
+      + "- S: Simulation stoppen und Auswertung anzeigen \n"
+      + "- Doppelklick mit Maus: Kameraposition zurück setzen");
+
+    PImage [] imgs = {loadImage(sketchPath + "/helpButton.png"), loadImage(sketchPath + "/helpButton.png"), loadImage(sketchPath + "/helpButton.png")};
+    cp5.addButton("help")
+      .setPosition(width - 75, 25)
+      .setImages(imgs)
+      .updateSize();
+
+    setVisible(false);
+  }
+
+  public void setVisible(boolean b) {
+    isVisible = b;
+    shortcuts.setVisible(b);
+    cam.setActive(!b);
+  }
+
+  public boolean isMouseOver() {
+    return isVisible && shortcuts.isMouseOver();
+  }
+}
+public void help() {
+  println("triggering Help");
+  infoArea.setVisible(! infoArea.isVisible);
+}
+public void loadObjects() { //<>//
   JSONObject data = loadJSONObject(sketchPath + fileName);
   // allgemeine Einstellungen laden
   simDuration = data.getFloat("simDuration");
@@ -548,7 +591,7 @@ class Terrain {
     }
   }
 }
-class Timer { //<>//
+class Timer { //<>// //<>//
   float time  ;
   float[] spawnTimes = new float[0];
   int spawnTimeIndex = 0;
@@ -590,7 +633,7 @@ class Timer { //<>//
     return result;
   }
 }
-public void setupControlElements() { //<>// //<>//
+public void setupControlElements() { //<>// //<>// //<>//
   cp5 = new ControlP5(this);
   // Textfeld der Konsole
   consoleArea = cp5.addTextarea("txt")
@@ -606,6 +649,7 @@ public void setupControlElements() { //<>// //<>//
   cp5.setAutoDraw(false);
   // benutzte Bilder laden
   tunnelTexture = loadImage(sketchPath + "/tunnelTexture.png");
+  infoArea = new InfoArea();
 }
 
 // Function, um alle Dinge zu zeichnen, die nicht in der 3D-Scene sind, sondern zur Benutzerinteraktion genutzt werden
@@ -639,7 +683,7 @@ public void keyPressed() {
   case 's' :
     stopSimulation();
     break;
-  case 'h' :
+  case 'd' :
     consoleArea.setVisible(! signsVisible);
     signsVisible = ! signsVisible;
     break;
