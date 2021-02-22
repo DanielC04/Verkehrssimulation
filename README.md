@@ -8,5 +8,5 @@ Requirements:
 	<li> Python 3.7 oder neuer muss installiert sein </li>
 	<li> Bibliotheken: numpy, matplotlib </li>
 </ul>
-<p>D&Ouml;ffnen Sie GUI2.exe, um die Ergebnisse des Pythonprogramms auszuwerten. M&ouml;gliche Commands k&ouml;nnen Sie &uuml;ber den Info Button oben rechts im Bild einsehen.</p>
+<p>&Ouml;ffnen Sie GUI2.exe, um die Ergebnisse des Pythonprogramms auszuwerten. M&ouml;gliche Commands k&ouml;nnen Sie &uuml;ber den Info Button oben rechts im Bild einsehen.</p>
 
