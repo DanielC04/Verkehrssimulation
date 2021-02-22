@@ -1,5 +1,5 @@
- /* //<>//
-shortcuts:
+/* //<>// //<>//
+ shortcuts:
  Leertaste: Simulation pausieren/fortsetzen
  TAB: GUI1 starten
  R: Simulation neu starten
@@ -48,19 +48,21 @@ String error;
 
 // in Programm benutzte Flags
 boolean pause = false;                            // true, wenn Programm pausiert
-boolean signsVisible = false;                     // Konsole und Schilder über Autos werden nur angezeigt wenn signsVisible == true
+boolean signsVisible = true;                     // Konsole und Schilder über Autos werden nur angezeigt wenn signsVisible == true
 boolean isLoading = true;
 
 void setup() {
-  size(1920, 1080, P3D);
+  fullScreen(P3D);
+  sketchPath = sketchPath();
+  if (sketchPath().contains("application.windows")) {
+    sketchPath = new File(sketchPath).getParentFile().getAbsolutePath();
+  }
+  PImage splashScreen = loadImage(sketchPath + "/splashScreen.PNG");
+  image(splashScreen, 0, 0, width, height);
   frameRate(1/dt);
   textSize(24);
   textAlign(CENTER);
   fill(0);
-  sketchPath = sketchPath();
-  if (isExe){
-    sketchPath = new File(sketchPath).getParentFile().getAbsolutePath();
-  }
   //Objekte initiieren
   cam = new PeasyCam(this, 0, 0, 0, 2000);
   cam.setSuppressRollRotationMode();

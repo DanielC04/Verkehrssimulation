@@ -86,7 +86,7 @@ Elevator selectedElevator = null;
 Tunnel selectedTunnel = null;
 CityCenter selectedCityCenter = null;
 
-public void setup() {  
+public void setup() {
   
   frameRate(25);
   textSize(32);
@@ -1217,7 +1217,7 @@ public void runPython() {
 
 public void runOtherGUI() {
   try {
-    launch(new File(sketchPath).getParentFile().getAbsolutePath() + "/GUI2.exe.lnk");
+    launch(new File(sketchPath).getParentFile().getAbsolutePath() + "/GUI2.lnk");
     popup.addText("Starting GUI2...");
   } 
   catch(Exception e) {
@@ -1269,7 +1269,7 @@ public int idOfElevator(Elevator e) {
   }
   return 0;
 }
-  public void settings() {  size(1920, 1080, P3D); }
+  public void settings() {  fullScreen(P3D); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "GUI1" };
     if (passedArgs != null) {

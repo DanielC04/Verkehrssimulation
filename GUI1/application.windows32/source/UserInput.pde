@@ -232,7 +232,7 @@ void runPython() {
 
 void runOtherGUI() {
   try {
-    launch(new File(sketchPath).getParentFile().getAbsolutePath() + "/GUI2.exe.lnk");
+    launch(new File(sketchPath).getParentFile().getAbsolutePath() + "/GUI2.lnk");
     popup.addText("Starting GUI2...");
   } 
   catch(Exception e) {

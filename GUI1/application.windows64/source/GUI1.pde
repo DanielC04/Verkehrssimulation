@@ -58,8 +58,8 @@ Elevator selectedElevator = null;
 Tunnel selectedTunnel = null;
 CityCenter selectedCityCenter = null;
 
-void setup() {  
-  size(1920, 1080, P3D);
+void setup() {
+  fullScreen(P3D);
   frameRate(25);
   textSize(32);
   font = createFont("Georgia", 24);

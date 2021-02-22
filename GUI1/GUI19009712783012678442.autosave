@@ -47,9 +47,10 @@ Iterator<CityCenter> cityCenterIteratorIn, cityCenterIteratorOut;
 final int scale = 20;                                                          // ungefähr 20 pixel sind 1 meter -> alle Distanzen müssen um 20 gestreckt werden
 final int border = 500 * scale;                                                // die Größe des generierten Terrains und die maximalen Eingabewerte in den Numberboxes
 final color color1 = color(0, 255, 0), color2 = color(255, 0, 0);
-final String fileName = "/data_input.json";
+final String inputFilePath = "/data_input.json";
 String sketchPath;
 PFont font;
+
 // sonstige Variablen
 PImage tunnelTexture;
 float upperBorder;
@@ -58,18 +59,14 @@ Elevator selectedElevator = null;
 Tunnel selectedTunnel = null;
 CityCenter selectedCityCenter = null;
 
-void setup() {
-  fullScreen(P3D);
+void setup() {  
+  size(1920, 1080, P3D);
   frameRate(25);
   textSize(32);
   font = createFont("Georgia", 24);
   textFont(font);
   fill(0);
-  sketchPath = sketchPath();
-  if (sketchPath().contains("application.windows")){
-    sketchPath = new File(sketchPath).getParentFile().getAbsolutePath();
-  }
-  tunnelTexture = loadImage(sketchPath  + "/tunnelTexture.png");
+  tunnelTexture = loadImage(sketchPath("tunnelTexture.png"));
   // Objekte für Benutzerein- und -ausgaben einrichten -> siehe tab UI
   setupControlElements();
   //Objekte initiieren
@@ -77,6 +74,10 @@ void setup() {
   cam.setSuppressRollRotationMode();
   myTerrain = new Terrain();
   popup = new PopupText();
+
+  popup.showTime = 40; 
+  popup.addText(sketchPath(""));
+
   cityCenterInfo = new CityCenterInfo();
   elevInfo = new ElevatorInfo();
   tunnelInfo = new TunnelInfo();
@@ -88,7 +89,6 @@ void setup() {
   out();
   in();
 }
-
 void draw() {
   background(255);
    //draw elevators

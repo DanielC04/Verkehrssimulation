@@ -1,4 +1,4 @@
-void setupControlElements() { //<>// //<>//
+void setupControlElements() { //<>// //<>// //<>//
   cp5 = new ControlP5(this);
   // Textfeld der Konsole
   consoleArea = cp5.addTextarea("txt")
@@ -8,7 +8,7 @@ void setupControlElements() { //<>// //<>//
     .setLineHeight(18)
     .setColor(color(0))
     .setColorBackground(color(200, 220))
-    .setVisible(false);
+  .setVisible(true);  
   
   console = cp5.addConsole(consoleArea);
   cp5.setAutoDraw(false);
@@ -54,9 +54,6 @@ void keyPressed() {
     break;
   default:
     break;
-  } 
-  if (keyCode==TAB) {
-    runOtherGUI();
   }
 }
 
@@ -88,20 +85,6 @@ void reset() {
   println("~ ---Simulation-started---");
   println("~ -----------------------------");
 }
-
-void runOtherGUI() {
-  try {
-    String otherGUI = new File(sketchPath).getParentFile().getAbsolutePath() + "/GUI1.exe.lnk";
-    launch(otherGUI);
-    println(otherGUI);
-    println("Starting GUI1...");
-  } 
-  catch(Exception e) {
-    println(e);
-    println("Error! GUI1 not started!");
-  }
-}
-
 
 void stopSimulation() {
   timer.time = simDuration + .1;
