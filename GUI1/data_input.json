@@ -84,7 +84,7 @@
       "y": 12,
       "vmax": 25,
       "z": -49,
-      "spawnRateIn": 8
+      "spawnRateIn": 15
     },
     {
       "spawnRateOut": 0,
@@ -108,7 +108,7 @@
       "y": 11,
       "vmax": 25,
       "z": -74,
-      "spawnRateIn": 7
+      "spawnRateIn": 2
     },
     {
       "spawnRateOut": 14,
@@ -116,7 +116,7 @@
       "y": 13,
       "vmax": 25,
       "z": -71,
-      "spawnRateIn": 21
+      "spawnRateIn": 2
     },
     {
       "spawnRateOut": 1,
@@ -124,7 +124,7 @@
       "y": 8,
       "vmax": 25,
       "z": -19,
-      "spawnRateIn": 5
+      "spawnRateIn": 10
     },
     {
       "spawnRateOut": 0,
@@ -149,9 +149,9 @@
         "z": 127
       },
       {
-        "x": 35,
-        "weight": 485,
-        "z": -61
+        "x": 5,
+        "weight": 450,
+        "z": -26
       },
       {
         "x": -46,
@@ -459,6 +459,16 @@
       "elev1": 4,
       "vmax": 40,
       "elev2": 1
+    },
+    {
+      "elev1": 14,
+      "vmax": 40,
+      "elev2": 13
+    },
+    {
+      "elev1": 13,
+      "vmax": 40,
+      "elev2": 14
     }
   ]
 }

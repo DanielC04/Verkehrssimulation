@@ -1,4 +1,4 @@
-/* //<>// //<>//
+/* //<>//
  shortcuts:
  Leertaste: Simulation pausieren/fortsetzen
  TAB: GUI1 starten

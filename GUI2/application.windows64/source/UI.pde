@@ -1,4 +1,4 @@
-void setupControlElements() { //<>// //<>// //<>//
+void setupControlElements() { //<>// //<>//
   cp5 = new ControlP5(this);
   // Textfeld der Konsole
   consoleArea = cp5.addTextarea("txt")

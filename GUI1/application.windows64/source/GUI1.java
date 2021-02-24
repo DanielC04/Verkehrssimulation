@@ -1278,7 +1278,6 @@ public int idOfElevator(Elevator e) {
   }
   return 0;
 }
-
   public void settings() {  fullScreen(P3D); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "GUI1" };

@@ -1,4 +1,4 @@
-void loadObjects() { //<>//
+void loadObjects() {
   JSONObject data = loadJSONObject(sketchPath + fileName);
   // allgemeine Einstellungen laden
   simDuration = data.getFloat("simDuration");

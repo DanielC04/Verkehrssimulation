@@ -26,7 +26,7 @@ import java.io.IOException;
 
 public class GUI2 extends PApplet {
 
-/* //<>// //<>//
+/* //<>//
  shortcuts:
  Leertaste: Simulation pausieren/fortsetzen
  TAB: GUI1 starten
@@ -397,7 +397,6 @@ public class Elevator extends Street {
     shape (elev);
   }
 }
-
 public class InfoArea {
   boolean isVisible = false;
   Textarea shortcuts;
@@ -441,7 +440,7 @@ public void help() {
   println("triggering Help");
   infoArea.setVisible(! infoArea.isVisible);
 }
-public void loadObjects() { //<>//
+public void loadObjects() {
   JSONObject data = loadJSONObject(sketchPath + fileName);
   // allgemeine Einstellungen laden
   simDuration = data.getFloat("simDuration");
@@ -591,7 +590,7 @@ class Terrain {
     }
   }
 }
-class Timer { //<>// //<>//
+class Timer { //<>//
   float time  ;
   float[] spawnTimes = new float[0];
   int spawnTimeIndex = 0;
@@ -633,7 +632,7 @@ class Timer { //<>// //<>//
     return result;
   }
 }
-public void setupControlElements() { //<>// //<>// //<>//
+public void setupControlElements() { //<>// //<>//
   cp5 = new ControlP5(this);
   // Textfeld der Konsole
   consoleArea = cp5.addTextarea("txt")
